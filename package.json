@@ -1,0 +1,20 @@
+{
+  "author": "Mason Goetz <masonlgoetz@gmail.com>",
+  "description": "Guild's FE engineering challenge",
+  "devDependencies": {
+    "concurrently": "^6.1.0"
+  },
+  "engines": {
+    "node": ">=14",
+    "yarn": ">=1.22"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "name": "frontend-take-home",
+  "repository": "git@github.com:GuildEducationInc/frontend-take-home.git",
+  "scripts": {
+    "js": "concurrently \"cd chat-frontend-js && yarn && yarn start\" \"cd chat-backend && yarn && yarn develop\"",
+    "ts": "concurrently \"cd chat-frontend-ts && yarn && yarn start\" \"cd chat-backend && yarn && yarn develop\""
+  },
+  "version": "1.1.0"
+}

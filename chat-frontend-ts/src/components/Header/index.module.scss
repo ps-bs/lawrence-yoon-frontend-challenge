@@ -1,0 +1,15 @@
+.container {
+  align-items: center;
+  box-shadow: 0 1px 3px 0 rgba(89, 89, 89, 0.23);
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+}
+
+.logo {
+  width: 80px;
+}
+
+.username {
+  cursor: pointer;
+}
