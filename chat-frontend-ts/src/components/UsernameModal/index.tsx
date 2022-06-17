@@ -1,15 +1,12 @@
-import { Dialog } from '@reach/dialog';
+import CloseIcon from '@mui/icons-material/Close';
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, FormControl, InputLabel, Button, TextField } from '@mui/material';
 import qs from 'qs';
 import { useContext } from 'react';
-import { useHistory, useLocation } from 'react-router';
+import { useHistory, useLocation } from 'react-router-dom';
 import { v4 } from 'uuid';
 
 import { AppContext } from '../../App/context';
 import { SocketContext } from '../../socket/context';
-
-import styles from './index.module.scss';
-
-import '@reach/dialog/styles.css';
 
 export const UsernameModal: React.FC = () => {
   const { pathname, search } = useLocation();
@@ -33,31 +30,57 @@ export const UsernameModal: React.FC = () => {
     localStorage.setItem('username', e.target.value);
   };
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     history.push(`${pathname}`);
     socket?.emit('username', currentUser);
   };
 
+  const handleClose = () => history.push(`${pathname}`);
+
   return (
-    <Dialog
-      aria-label="Username input"
-      isOpen={Boolean(parsedParams.isEditingName) || false}
-      onDismiss={() => history.push(`${pathname}`)}
-    >
-      <form className={styles.formControl} onSubmit={handleSubmit}>
-        <label htmlFor="username">Edit your name</label>
-        <input
-          aria-label="Edit your name"
-          type="text"
-          name="username"
-          id="username"
-          onChange={handleChange}
-          value={currentUser?.username || ''}
-          placeholder="Enter your name"
-        />
-        <input type="submit" value="submit" />
-      </form>
+    <Dialog open={Boolean(parsedParams.isEditingName) || false} onClose={handleClose} fullWidth>
+      <DialogTitle sx={{ p: 4, pb: 0 }}>
+        Edit your name
+        <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+      </DialogTitle>
+      <DialogContent sx={{ px: 4, pb: 8 }}>
+        <DialogContentText sx={{ mb: 4 }}>
+          Edit how your name displays when others chat with you.
+        </DialogContentText>
+        <InputLabel htmlFor="username">Name</InputLabel>
+        <FormControl>
+          <TextField
+            autoFocus
+            margin="dense"
+            aria-label="Edit your name"
+            type="text"
+            name="username"
+            id="username"
+            fullWidth
+            variant="outlined"
+            onChange={handleChange}
+            value={currentUser?.username || ''}
+            placeholder="Enter your name"
+            data-testid="username-input"
+          />
+        </FormControl>
+      </DialogContent>
+      <DialogActions sx={{ p: 4, pt: 0 }}>
+        <Button variant="outlined" onClick={handleClose} data-testid="cancel-button">Cancel</Button>
+        <Button variant="contained" onClick={handleSubmit} data-testid="save-button">Save</Button>
+      </DialogActions>
     </Dialog>
   );
 };

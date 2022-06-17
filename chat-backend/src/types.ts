@@ -23,5 +23,12 @@ export type Message = {
 
 export type Conversation = {
   conversationId: string;
+  conversationName?: string;
   userIds: string[];
+  typingUserIds: string[];
+}
+
+export type Typing = {
+  conversationId: string;
+  userId: string; // user id from client
 }

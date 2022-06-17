@@ -26,27 +26,4 @@
     background-color: rgba(255, 255, 255, 0.15);
     border-left-color: #ffffff;
   }
-
-  .statusOnline {
-    position: absolute;
-    left: 56px;
-    width: 10px;
-    height: 10px;
-    background-color: #3dad0e;
-    border-radius: 50%;
-  }
-
-  .statusOffline {
-    position: absolute;
-    left: 56px;
-    width: 10px;
-    height: 10px;
-    border: 2px solid #fff;
-    border-radius: 50%;
-  }
-
-  .statusTyping {
-    position: absolute;
-    left: 48px;
-  }
 }

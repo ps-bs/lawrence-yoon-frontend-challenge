@@ -4,6 +4,7 @@ import io, { Socket } from 'socket.io-client';
 import { v4 } from 'uuid';
 
 import { ChatView } from '../components/ChatView';
+import { CreateChannel } from '../components/CreateChannel';
 import { Header } from '../components/Header';
 import { LeftPanel } from '../components/LeftPanel';
 import { SelectConversation } from '../components/SelectConversation';
@@ -64,6 +65,22 @@ export const App: React.FC = () => {
         setMessages((oldMessages) => [...oldMessages, message])
       );
       socket.on('messages', (messages: Message[]) => setMessages(messages));
+      socket.on('conversation', (conversation: Conversation) =>
+        setConversations(oldConversations => {
+          let exist = false;
+          const newConversations = oldConversations.map(c => {
+            if (c.conversationId === conversation.conversationId) {
+              exist = true;
+              return conversation;
+            }
+            return c;
+          });
+          if (!exist) {
+            newConversations.push(conversation);
+          }
+          return newConversations;
+        })
+      );
     }
   }, [socket]);
 
@@ -85,6 +102,9 @@ export const App: React.FC = () => {
           <Switch>
             <Route exact path="/">
               <SelectConversation />
+            </Route>
+            <Route exact path="/newChannel">
+              <CreateChannel />
             </Route>
             <Route path="/conversation/:conversationId">
               <ChatView />

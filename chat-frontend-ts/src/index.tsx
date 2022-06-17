@@ -1,15 +1,20 @@
+import { ThemeProvider } from '@mui/material/styles';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
 import { App } from './App';
 import reportWebVitals from './reportWebVitals';
+import { GlobalStyle, theme } from './styles';
 
 ReactDOM.render(
   <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ThemeProvider>
   </StrictMode>,
   document.getElementById('root')
 );
