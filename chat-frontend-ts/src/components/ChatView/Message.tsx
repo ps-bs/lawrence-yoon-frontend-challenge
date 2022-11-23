@@ -21,7 +21,7 @@ export const ChatViewMessage: React.FC<Message> = (message) => {
           {format(new Date(message.createdAt), 'h:mm a ')} {relativeDay}
         </p>
       </span>
-      <p>{message.body}</p>
+      <p className={styles.messageBody}>{message.body}</p>
     </div>
   );
 };

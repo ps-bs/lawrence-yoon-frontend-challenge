@@ -16,6 +16,8 @@ export const Header: React.FC = () => {
         <img
           className={styles.logo}
           src="https://recess-images.imgix.net/guild_logos/guild/guild_color.svg"
+          alt="logo"
+          data-testid="logo"
         />
       </Link>
       <span
@@ -23,7 +25,7 @@ export const Header: React.FC = () => {
         onClick={() => history.push(`${pathname}?isEditingName=true`)}
         role="button"
       >
-        <p>{currentUser?.username ?? 'Pick a username'}</p>
+        <p data-testid="username">{currentUser?.username ?? 'Pick a username'}</p>
       </span>
     </header>
   );

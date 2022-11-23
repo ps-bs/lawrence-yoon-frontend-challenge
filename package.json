@@ -14,7 +14,8 @@
   "repository": "git@github.com:GuildEducationInc/frontend-take-home.git",
   "scripts": {
     "js": "concurrently \"cd chat-frontend-js && yarn && yarn start\" \"cd chat-backend && yarn && yarn develop\"",
-    "ts": "concurrently \"cd chat-frontend-ts && yarn && yarn start\" \"cd chat-backend && yarn && yarn develop\""
+    "ts": "concurrently \"cd chat-frontend-ts && yarn && yarn start\" \"cd chat-backend && yarn && yarn develop\"",
+    "ts-test": "cd chat-frontend-ts && yarn && yarn test"
   },
   "version": "1.1.0"
 }

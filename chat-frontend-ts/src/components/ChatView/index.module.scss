@@ -13,12 +13,13 @@
 
 .header {
   border-bottom: 1px solid #e4e4e4;
+  padding: 32px 40px 24px;
 }
 
 .input {
   border: 1px solid #303030;
   border-radius: 2px;
-  min-width: 788px;
+  width: 90%;
   padding-left: 12px;
 }
 
@@ -37,12 +38,32 @@
 
   .sentAt {
     font-size: 14px;
+    color: #686868;
   }
 }
 
-.messageList {
+.messageBody {
+  color: #303030;
+}
+
+.messageListScrollWrapper {
   border-bottom: 1px solid #e4e4e4;
   height: 453.5px;
+  overflow-y: scroll;
+  // padding: 24px 40px 32px;
+  padding: 24px 0 32px;
+}
+
+.messageListWrapper {
+  padding: 0 40px;
+  min-height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.messageList {
+  display: flex;
+  flex-direction: column;
 }
 
 .submit {
@@ -54,4 +75,31 @@
   height: 44px;
   margin-left: 16px;
   padding: 14px 24px;
+}
+
+.statusOnline {
+  display: flex;
+  align-items: center;
+  color: #3dad0e;
+
+  .status {
+    margin-right: 8px;
+    width: 10px;
+    height: 10px;
+    background-color: #3dad0e;
+    border-radius: 50%;
+  }
+}
+
+.statusOffline {
+  display: flex;
+  align-items: center;
+
+  .status {
+    margin-right: 8px;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #000;
+    border-radius: 50%;
+  }
 }
